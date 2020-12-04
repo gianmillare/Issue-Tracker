@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 
 // connect the server to the public directory
-app.use(static.express('public'));
+app.use(express.static('public'));
 
 // render the page to localhost3000
 app.listen(3000, function() {
