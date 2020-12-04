@@ -1,0 +1,23 @@
+{
+  "name": "issue-tracker",
+  "version": "1.0.0",
+  "description": "React mini-project taught in 'Pro MERN Stack\" by Vasan Subramanian.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gianmillare/Issue-Tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gianmillare/Issue-Tracker/issues"
+  },
+  "homepage": "https://github.com/gianmillare/Issue-Tracker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
