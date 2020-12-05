@@ -1,7 +1,7 @@
 class IssueFilter extends React.Component {
     render() {
         return (
-            <div>This area is a placeholder for filtering issues.</div>
+            <div>This is a placeholder for filtering issues!</div>
         );
     }
 }
@@ -9,24 +9,24 @@ class IssueFilter extends React.Component {
 class IssueAdd extends React.Component {
     render() {
         return (
-            <div>This area is a placeholder for user's ability to add issues.</div>
-        );
+            <div>This is a placeholder for adding new issues!</div>
+        )
     }
 }
 
-class IssueList extends React.Component {
+class DisplayIssues extends React.Component {
     render() {
         return (
             <React.Fragment>
                 <h1>Issue Tracker</h1>
-                <IssueFilter />
-                <hr />
+                <IssueFilter/>
+                <hr/>
 
-                <IssueAdd />
+                <IssueAdd/>
             </React.Fragment>
         );
     }
 }
 
-const element = <IssueList />;
-ReactDOM.render(element, document.getElementById("contents"));
+const element = <DisplayIssues/>;
+ReactDOM.render(element, document.getElementById('contents'));
