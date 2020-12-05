@@ -25,26 +25,30 @@ class IssueFilter extends React.Component {
     }
 }
 
+// Works with IssueRow
 class IssueTable extends React.Component {
     render() {
+        // define the style of the IssueRows here
+        const rowStyle = {border: "1px solid silver", padding: 4};
         return (
-            <table>
+            <table style={{borderCollapse: "collapse"}}>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Title</th>
+                        <th style={rowStyle}>ID</th>
+                        <th style={rowStyle}>Title</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <IssueRow />
-                    <IssueRow />
+                    <IssueRow rowStyle={rowStyle} issue_id={1} issue_title="Error when adding a new issue."/>
+                    <IssueRow rowStyle={rowStyle} issue_id={2} issue_title="Panel is missing styling on corners."/>
                 </tbody>
             </table>
         );
     }
 }
 
+// Works with IssueTable
 class IssueRow extends React.Component {
     render() {
         const style = this.props.rowStyle;
