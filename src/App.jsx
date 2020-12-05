@@ -45,6 +45,18 @@ class IssueTable extends React.Component {
     }
 }
 
+class IssueRow extends React.Component {
+    render() {
+        const style = this.props.rowStyle;
+        return (
+            <tr>
+                <td style={style}>{this.props.issue_id}</td>
+                <td style={style}>{this.props.issue_title}</td>
+            </tr>
+        );
+    }
+}
+
 class IssueAdd extends React.Component {
     render() {
         return (
