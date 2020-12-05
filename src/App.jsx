@@ -28,7 +28,19 @@ class IssueFilter extends React.Component {
 class IssueTable extends React.Component {
     render() {
         return (
-            <div>This area will hold a table of issues!</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <IssueRow />
+                    <IssueRow />
+                </tbody>
+            </table>
         );
     }
 }
