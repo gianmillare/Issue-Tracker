@@ -36,7 +36,7 @@ class IssueTable extends React.Component {
 
 class IssueAdd extends React.Component {
     render() {
-        returned (
+        return (
             <div>This is a placeholder for users' ability to add new issues.</div>
         );
     }
