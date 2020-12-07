@@ -20,16 +20,42 @@ class IssueFilter extends React.Component {
 
 class IssueRow extends React.Component {
     render() {
+        const issue = this.props.issue;
         return (
-            <div>This is a placeholder.</div>
+            <tr>
+                <td>{issue.id}</td>
+                <td>{issue.status}</td>
+                <td>{issue.created.toDateString()}</td>
+                <td>{issue.owner}</td>
+                <td>{issue.due ? issue.due.toDateString() : ""}</td>
+                <td>{issue.effort}</td>
+                <td>{issue.title}</td>
+            </tr>
         );
     }
 }
 
 class IssueTable extends React.Component {
     render() {
+        const issueRows = issues.map(issue => <IssueRow key={issue.id} issue={issue} />);
         return (
-            <div>This is a placeholder.</div>
+            <table className="bordered-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Owner</th>
+                        <th>Due Date</th>
+                        <th>Effort</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {issueRows}
+                </tbody>
+            </table>
         );
     }
 }
