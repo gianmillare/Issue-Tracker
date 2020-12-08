@@ -47,6 +47,11 @@ var initialIssues = [{
   effort: 10,
   title: 'Restructure the tasks list on all pages.'
 }];
+var sampleIssue = {
+  status: 'New',
+  owner: 'Garvyn Vinoya',
+  title: 'Completion date should be optional.'
+};
 
 var IssueFilter = /*#__PURE__*/function (_React$Component) {
   _inherits(IssueFilter, _React$Component);
@@ -96,6 +101,7 @@ var IssueTable = /*#__PURE__*/function (_React$Component3) {
 
   var _super3 = _createSuper(IssueTable);
 
+  // First start the constructor
   function IssueTable() {
     var _this;
 
@@ -105,14 +111,19 @@ var IssueTable = /*#__PURE__*/function (_React$Component3) {
     _this.state = {
       issues: []
     };
+    setTimeout(function () {
+      _this.createIssue(sampleIssue);
+    }, 2000);
     return _this;
-  }
+  } // load the date
+
 
   _createClass(IssueTable, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.loadData();
-    }
+    } // Set the loading of data on a timer
+
   }, {
     key: "loadData",
     value: function loadData() {
@@ -123,6 +134,18 @@ var IssueTable = /*#__PURE__*/function (_React$Component3) {
           issues: initialIssues
         });
       }, 500);
+    } // Add the new data, push it into the database, and then set the new list as the State
+
+  }, {
+    key: "createIssue",
+    value: function createIssue(issue) {
+      issue.id = this.state.issues.length + 1;
+      issue.created = new Date();
+      var newIssueList = this.state.issues.slice();
+      newIssueList.push(issue);
+      this.setState({
+        issues: newIssueList
+      });
     }
   }, {
     key: "render",

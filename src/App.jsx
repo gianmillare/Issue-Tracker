@@ -10,6 +10,10 @@ const initialIssues = [
     }
 ];
 
+const sampleIssue = {
+    status: 'New', owner: 'Garvyn Vinoya', title: 'Completion date should be optional.',
+};
+
 class IssueFilter extends React.Component {
     render() {
         return (
@@ -36,17 +40,31 @@ class IssueRow extends React.Component {
 }
 
 class IssueTable extends React.Component {
+    // First start the constructor
     constructor() {
         super();
         this.state = { issues: [] };
+        setTimeout(() => {
+            this.createIssue(sampleIssue);
+        }, 2000);
     }
+    // load the date
     componentDidMount() {
         this.loadData();
     }
+    // Set the loading of data on a timer
     loadData() {
         setTimeout(() => {
             this.setState({issues: initialIssues });
         }, 500);
+    }
+    // Add the new data, push it into the database, and then set the new list as the State
+    createIssue(issue) {
+        issue.id = this.state.issues.length + 1;
+        issue.created = new Date();
+        const newIssueList = this.state.issues.slice();
+        newIssueList.push(issue);
+        this.setState({ issues: newIssueList });
     }
     render() {
         const issueRows = this.state.issues.map(issue => <IssueRow key={issue.id} issue={issue} />);
