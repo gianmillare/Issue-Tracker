@@ -48,7 +48,7 @@ class IssueTable extends React.Component {
             this.createIssue(sampleIssue);
         }, 2000);
     }
-    // load the date
+    // load the data
     componentDidMount() {
         this.loadData();
     }
