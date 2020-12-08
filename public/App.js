@@ -103,12 +103,28 @@ var IssueTable = /*#__PURE__*/function (_React$Component3) {
 
     _this = _super3.call(this);
     _this.state = {
-      issues: initialIssues
+      issues: []
     };
     return _this;
   }
 
   _createClass(IssueTable, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.loadData();
+    }
+  }, {
+    key: "loadData",
+    value: function loadData() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        _this2.setState({
+          issues: initialIssues
+        });
+      }, 500);
+    }
+  }, {
     key: "render",
     value: function render() {
       var issueRows = this.state.issues.map(function (issue) {
