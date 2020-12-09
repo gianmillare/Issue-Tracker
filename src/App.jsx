@@ -79,6 +79,33 @@ class IssueAdd extends React.Component {
 }
 
 class DisplayIssues extends React.Component {
+    // Establich the constructor and super here. 
+    constructor() {
+        super();
+        // Set the state to an empty issue list
+        this.state =  {issue: []};
+        // bind the method to create a new issue
+        this.createIssue = this.createIssue.bind(this);
+    }
+    // mount the date
+    componentDidMount() {
+        this.loadData();
+    }
+    // load the data
+    loadData() {
+        setTimeout(() => {
+            this.setState({issues: initialIssues});
+        }, 500);
+    }
+    // Create the method here to add a new issue
+    createIssue(issue) {
+        issue.id = this.state/issues.length + 1;
+        issue.created = new Date();
+        const newIssueList = this.state.issues.slice();
+        newIssueList.push(issue);
+        this.setState({ issues: newIssueList });
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -86,10 +113,10 @@ class DisplayIssues extends React.Component {
                 <IssueFilter />
                 <hr />
 
-                <IssueTable />
+                <IssueTable issues={this.state.issues}/>
                 <hr />
 
-                <IssueAdd />
+                <IssueAdd createIssue={this.createIssue}/>
             </React.Fragment>
         );
     }
