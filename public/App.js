@@ -47,11 +47,6 @@ var initialIssues = [{
   effort: 10,
   title: 'Restructure the tasks list on all pages.'
 }];
-var sampleIssue = {
-  status: 'New',
-  owner: 'Garvyn Vinoya',
-  title: 'Completion date should be optional.'
-};
 
 var IssueFilter = /*#__PURE__*/function (_React$Component) {
   _inherits(IssueFilter, _React$Component);
@@ -136,16 +131,40 @@ var IssueAdd = /*#__PURE__*/function (_React$Component4) {
     _classCallCheck(this, IssueAdd);
 
     _this = _super4.call(this);
-    setTimeout(function () {
-      _this.props.createIssue(sampleIssue);
-    }, 2000);
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // Create the handleSubmit method here
+
 
   _createClass(IssueAdd, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var form = document.forms.issueAdd;
+      var issue = {
+        owner: form.owner.value,
+        title: form.title.value,
+        status: 'New'
+      };
+      this.props.createIssue(issue);
+      form.owner.value = "";
+      form.title.value = "";
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, "This is a placeholder for users' ability to add new issues.");
+      return /*#__PURE__*/React.createElement("form", {
+        name: "issueAdd",
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "text",
+        name: "owner",
+        placeholder: "Owner"
+      }), /*#__PURE__*/React.createElement("input", {
+        type: "text",
+        name: "title",
+        placeholder: "Title"
+      }), /*#__PURE__*/React.createElement("button", null, "Add"));
     }
   }]);
 
@@ -157,7 +176,7 @@ var DisplayIssues = /*#__PURE__*/function (_React$Component5) {
 
   var _super5 = _createSuper(DisplayIssues);
 
-  // Establich the constructor and super here. 
+  // Establish the constructor and super here. 
   function DisplayIssues() {
     var _this2;
 

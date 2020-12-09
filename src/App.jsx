@@ -66,12 +66,12 @@ class IssueAdd extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     // Create the handleSubmit method here
-    handleSubmit(event) {
-        event.preventDefault();
+    handleSubmit(e) {
+        e.preventDefault();
         const form = document.forms.issueAdd;
         const issue = {
-            owner: form.owner.value, title: form.title.value, status: "New",
-        }
+            owner: form.owner.value, title: form.title.value, status: 'New',
+        };
         this.props.createIssue(issue);
         form.owner.value = ""; form.title.value = "";
     }
@@ -87,11 +87,11 @@ class IssueAdd extends React.Component {
 }
 
 class DisplayIssues extends React.Component {
-    // Establich the constructor and super here. 
+    // Establish the constructor and super here. 
     constructor() {
         super();
         // Set the state to an empty issue list
-        this.state =  {issue: []};
+        this.state =  {issues: []};
         // bind the method to create a new issue
         this.createIssue = this.createIssue.bind(this);
     }
