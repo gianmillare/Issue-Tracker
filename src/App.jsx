@@ -10,10 +10,6 @@ const initialIssues = [
     }
 ];
 
-const sampleIssue = {
-    status: 'New', owner: 'Garvyn Vinoya', title: 'Completion date should be optional.',
-};
-
 class IssueFilter extends React.Component {
     render() {
         return (
@@ -67,13 +63,25 @@ class IssueTable extends React.Component {
 class IssueAdd extends React.Component {
     constructor() {
         super();
-        setTimeout(() => {
-            this.props.createIssue(sampleIssue);
-        }, 2000);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    // Create the handleSubmit method here
+    handleSubmit(event) {
+        event.preventDefault();
+        const form = document.forms.issueAdd;
+        const issue = {
+            owner: form.owner.value, title: form.title.value, status: "New",
+        }
+        this.props.createIssue(issue);
+        form.owner.value = ""; form.title.value = "";
     }
     render() {
         return (
-            <div>This is a placeholder for users' ability to add new issues.</div>
+            <form name="issueAdd" onSubmit={this.handleSubmit}>
+                <input type="text" name="owner" placeholder="Owner" />
+                <input type="text" name="title" placeholder="Title" />
+                <button>Add</button>
+            </form>
         );
     }
 }
@@ -83,7 +91,7 @@ class DisplayIssues extends React.Component {
     constructor() {
         super();
         // Set the state to an empty issue list
-        this.state =  {issues: []};
+        this.state =  {issue: []};
         // bind the method to create a new issue
         this.createIssue = this.createIssue.bind(this);
     }
