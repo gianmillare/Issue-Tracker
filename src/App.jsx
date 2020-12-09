@@ -83,7 +83,7 @@ class DisplayIssues extends React.Component {
     constructor() {
         super();
         // Set the state to an empty issue list
-        this.state =  {issue: []};
+        this.state =  {issues: []};
         // bind the method to create a new issue
         this.createIssue = this.createIssue.bind(this);
     }
@@ -99,7 +99,7 @@ class DisplayIssues extends React.Component {
     }
     // Create the method here to add a new issue
     createIssue(issue) {
-        issue.id = this.state/issues.length + 1;
+        issue.id = this.state.issues.length + 1;
         issue.created = new Date();
         const newIssueList = this.state.issues.slice();
         newIssueList.push(issue);
