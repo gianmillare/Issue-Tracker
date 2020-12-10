@@ -10,20 +10,14 @@ const initialIssues = [
     }
 ];
 
+// IssueFilter is a placeholder and is a stateless function
 function IssueFilter() {
     return (
         <div>This is a placeholder for a function that will filter issues.</div>
     )
 }
 
-// class IssueFilter extends React.Component {
-//     render() {
-//         return (
-//             <div>This is a placeholder for the feature that allows users to filter issues.</div>
-//         );
-//     }
-// }
-
+// IssueRow will also be a stateless function that takes an argument "props"
 function IssueRow(props) {
     const issue = props.issue;
     return (
@@ -39,23 +33,7 @@ function IssueRow(props) {
     );
 }
 
-// class IssueRow extends React.Component {
-//     render() {
-//         const issue = this.props.issue;
-//         return (
-//             <tr>
-//                 <td>{issue.id}</td>
-//                 <td>{issue.status}</td>
-//                 <td>{issue.created.toDateString()}</td>
-//                 <td>{issue.owner}</td>
-//                 <td>{issue.due ? issue.due.toDateString() : ""}</td>
-//                 <td>{issue.effort}</td>
-//                 <td>{issue.title}</td>
-//             </tr>
-//         );
-//     }
-// }
-
+// IssueTable is a stateless function that takes in argument props, that is the issues list above.
 function IssueTable(props) {
     const issueRows = props.issues.map(issue => <IssueRow key={issue.id} issue={issue}/>)
     return (
@@ -78,32 +56,7 @@ function IssueTable(props) {
         </table>
     );
 }
-
-// class IssueTable extends React.Component {
-//     render() {
-//         const issueRows = this.props.issues.map(issue => <IssueRow key={issue.id} issue={issue} />);
-//         return (
-//             <table className="bordered-table">
-//                 <thead>
-//                     <tr>
-//                         <th>ID</th>
-//                         <th>Status</th>
-//                         <th>Created</th>
-//                         <th>Owner</th>
-//                         <th>Due Date</th>
-//                         <th>Effort</th>
-//                         <th>Title</th>
-//                     </tr>
-//                 </thead>
-
-//                 <tbody>
-//                     {issueRows}
-//                 </tbody>
-//             </table>
-//         );
-//     }
-// }
-
+// because Issue add has some interactivity (it contains a constructor and user input), it will be a class, but still no state
 class IssueAdd extends React.Component {
     constructor() {
         super();
@@ -130,6 +83,7 @@ class IssueAdd extends React.Component {
     }
 }
 
+// DisplayIssues will require a state to render all above functions and classes. This is a state-based class.
 class DisplayIssues extends React.Component {
     // Establish the constructor and super here. 
     constructor() {
