@@ -10,13 +10,19 @@ const initialIssues = [
     }
 ];
 
-class IssueFilter extends React.Component {
-    render() {
-        return (
-            <div>This is a placeholder for the feature that allows users to filter issues.</div>
-        );
-    }
+function IssueFilter() {
+    return (
+        <div>This is a placeholder for a function that will filter issues.</div>
+    )
 }
+
+// class IssueFilter extends React.Component {
+//     render() {
+//         return (
+//             <div>This is a placeholder for the feature that allows users to filter issues.</div>
+//         );
+//     }
+// }
 
 class IssueRow extends React.Component {
     render() {
