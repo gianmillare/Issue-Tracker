@@ -108,5 +108,20 @@ class DisplayIssue extends React.Component {
         newIssueList.push(issue);
         this.setState({ issue: newIssueList });
     }
-    
+
+    render() {
+        return (
+            <React.Fragment>
+                <h1>Issue Tracker</h1>
+                <IssueFilter />
+                <hr />
+                <IssueTable issues={this.state.issue} />
+                <hr />
+                <IssueAdd createIssue={this.createIssue} />
+            </React.Fragment>
+        );
+    }
 }
+
+const element = <DisplayIssue />
+ReactDOM.render(element, document.getElementById("contents"));
