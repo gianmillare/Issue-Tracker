@@ -56,3 +56,20 @@ function IssueTable(props) {
         </table>
     );
 }
+
+class IssueAdd extends React.Component {
+    constructor() {
+        super();
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        const form = document.forms.issueAdd;
+        const issue = {
+            owner: form.owner.value, title: form.title.value, status: "New",
+        }
+        this.props.createIssue(issue);
+        form.owner.value = ""; form.title.value = "";
+    }
+}
