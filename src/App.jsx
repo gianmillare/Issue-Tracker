@@ -83,3 +83,30 @@ class IssueAdd extends React.Component {
         );
     }
 }
+
+class DisplayIssue extends React.Component {
+    constructor() {
+        super();
+        this.state = { issue: [] };
+        this.createIssue = this.createIssue.bind(this);
+    }
+
+    componentDidMount() {
+        this.loadData();
+    }
+
+    loadData() {
+        setTimeout(() => {
+            this.setState({ issue: initialIssues });
+        }, 500);
+    }
+
+    createIssue() {
+        issue.id = this.state.issue.length + 1;
+        issue.created = new Date();
+        const newIssueList = this.state.issue.slice();
+        newIssueList.push(issue);
+        this.setState({ issue: newIssueList });
+    }
+    
+}
