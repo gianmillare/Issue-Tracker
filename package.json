@@ -4,6 +4,8 @@
   "description": "React mini-project taught in 'Pro MERN Stack\" by Vasan Subramanian.",
   "main": "index.js",
   "scripts": {
+    "build": "npx babel src --presets @babel/react --out-dir public",
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +20,11 @@
   "homepage": "https://github.com/gianmillare/Issue-Tracker#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "@babel/preset-react": "^7.12.10"
   }
 }
