@@ -28,7 +28,7 @@ function IssueRow(props) {
             <td>{issue.owner}</td>
             <td>{issue.effort}</td>
             <td>{issue.created.toDateString()}</td>
-            <td>{issue.due ? issue.id.toDateString() : ""}</td>
+            <td>{issue.due ? issue.due.toDateString() : ""}</td>
             <td>{issue.title}</td>
         </tr>
     );
@@ -87,7 +87,7 @@ class IssueAdd extends React.Component {
 class DisplayIssue extends React.Component {
     constructor() {
         super();
-        this.state = { issue: [] };
+        this.state = { issues: [] };
         this.createIssue = this.createIssue.bind(this);
     }
 
@@ -97,16 +97,18 @@ class DisplayIssue extends React.Component {
 
     loadData() {
         setTimeout(() => {
-            this.setState({ issue: initialIssues });
+            this.setState({ issues: initialIssues });
         }, 500);
     }
 
-    createIssue() {
-        issue.id = this.state.issue.length + 1;
+    createIssue(issue) {
+        issue.id = this.state.issues.length + 1;
         issue.created = new Date();
-        const newIssueList = this.state.issue.slice();
+        const newIssueList = this.state.issues.slice();
+        // console.log(newIssueList);
         newIssueList.push(issue);
-        this.setState({ issue: newIssueList });
+        // console.log(newIssueList);
+        this.setState({ issues: newIssueList });
     }
 
     render() {
@@ -115,7 +117,7 @@ class DisplayIssue extends React.Component {
                 <h1>Issue Tracker</h1>
                 <IssueFilter />
                 <hr />
-                <IssueTable issues={this.state.issue} />
+                <IssueTable issues={this.state.issues} />
                 <hr />
                 <IssueAdd createIssue={this.createIssue} />
             </React.Fragment>
