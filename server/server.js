@@ -21,7 +21,7 @@ const resolvers = {
 };
 
 // define the function used in the resolvers above
-function setAboutMessage(_, {message}) {
+function setAboutMessage(_, { message }) {
     return aboutMessage = message;
 }
 
