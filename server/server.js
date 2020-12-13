@@ -1,3 +1,6 @@
+// set fs module to readFileSync to require fs
+const fs = require('fs');
+
 // set express to require express
 const express = require('express');
 
@@ -6,16 +9,6 @@ const { ApolloServer } = require('apollo-server-express');
 
 // the variable that we want to display: an about message
 let aboutMessage = "Issue Tracker API v1.0";
-
-// define the schema using string formatting
-const typeDefs = `
-    type Query {
-        about: String!
-    }
-    type Mutation {
-        setAboutMessage(message: String!): String
-    }
-`;
 
 // create functions following the schema that will be used when accessing the schema
 const resolvers = {
@@ -32,9 +25,9 @@ function setAboutMessage(_, {message}) {
     return aboutMessage = message;
 }
 
-// initiate an apollo server that takes in the typedefs and the resolvers above
+// initiate an apollo server that takes in the typedefs from schema.graphql and the resolvers above
 const server = new ApolloServer({
-    typeDefs,
+    typeDefs: fs.readFileSync('./server/schema.graphql', 'utf-8'),
     resolvers,
 });
 
