@@ -1,18 +1,3 @@
-const initialIssues = [
-    {
-        id: 1, status: "New", owner: "Kevin", effort: 5, created: new Date("2020-12-08"), 
-        due: new Date("2020-12-10"), title: "Users are unable to add new issues.",
-    },
-    {
-        id: 2, status: "New", owner: "Christian", effort: 2, created: new Date("2020-12-11"), 
-        due: new Date("2020-12-20"), title: "Borders around the issue table is missing.",
-    },
-    {
-        id: 3, status: "Completed", owner: "Calvin", effort: 8, created: new Date("2020-12-02"), 
-        due: undefined, title: "Registration page leads to blank page after registering.",
-    },
-];
-
 function IssueFilter() {
     return (
         <div>This is a placeholder for users to filter out what kind of issues they want to see.</div>
@@ -27,8 +12,8 @@ function IssueRow(props) {
             <td>{issue.status}</td>
             <td>{issue.owner}</td>
             <td>{issue.effort}</td>
-            <td>{issue.created.toDateString()}</td>
-            <td>{issue.due ? issue.due.toDateString() : ""}</td>
+            <td>{issue.created}</td>
+            <td>{issue.due}</td>
             <td>{issue.title}</td>
         </tr>
     );
@@ -95,10 +80,22 @@ class DisplayIssue extends React.Component {
         this.loadData();
     }
 
-    loadData() {
-        setTimeout(() => {
-            this.setState({ issues: initialIssues });
-        }, 500);
+    // ensure loadData is asynchronous, and include the queries once used in Playground
+    async loadData() {
+        const query = `query {
+            issueList {
+                id title status owner
+                created effort due
+            }
+        }`;
+
+        const response = await fetch('/graphql', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query })
+        });
+        const result = await response.json();
+        this.setState({ issues: result.data.issueList });
     }
 
     createIssue(issue) {
