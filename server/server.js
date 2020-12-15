@@ -24,7 +24,7 @@ const issuesDB = [
         id: 3, status: "Completed", owner: "Calvin", effort: 8, created: new Date("2020-12-02"), 
         due: undefined, title: "Registration page leads to blank page after registering.",
     },
-]
+];
 
 // create functions following the schema that will be used when accessing the schema
 const resolvers = {

@@ -11,8 +11,8 @@ function IssueRow(props) {
             <td>{issue.id}</td>
             <td>{issue.status}</td>
             <td>{issue.owner}</td>
-            <td>{issue.effort}</td>
             <td>{issue.created}</td>
+            <td>{issue.effort}</td>
             <td>{issue.due}</td>
             <td>{issue.title}</td>
         </tr>
@@ -83,19 +83,19 @@ class DisplayIssue extends React.Component {
     // ensure loadData is asynchronous, and include the queries once used in Playground
     async loadData() {
         const query = `query {
-            issueList {
-                id title status owner
-                created effort due
-            }
+          issueList {
+            id title status owner
+            created effort due
+          }
         }`;
 
         const response = await fetch('/graphql', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({ query })
-        });
-        const result = await response.json();
-        this.setState({ issues: result.data.issueList });
+          });
+          const result = await response.json();
+          this.setState({ issues: result.data.issueList });
     }
 
     createIssue(issue) {
