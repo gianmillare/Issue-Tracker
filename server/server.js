@@ -10,10 +10,27 @@ const { ApolloServer } = require('apollo-server-express');
 // the variable that we want to display: an about message
 let aboutMessage = "Issue Tracker API v1.0";
 
+// Include the Query field from the schema file
+const issuesDB = [
+    {
+        id: 1, status: "New", owner: "Kevin", effort: 5, created: new Date("2020-12-08"), 
+        due: new Date("2020-12-10"), title: "Users are unable to add new issues.",
+    },
+    {
+        id: 2, status: "New", owner: "Christian", effort: 2, created: new Date("2020-12-11"), 
+        due: new Date("2020-12-20"), title: "Borders around the issue table is missing.",
+    },
+    {
+        id: 3, status: "Completed", owner: "Calvin", effort: 8, created: new Date("2020-12-02"), 
+        due: undefined, title: "Registration page leads to blank page after registering.",
+    },
+]
+
 // create functions following the schema that will be used when accessing the schema
 const resolvers = {
     Query: {
         about: () => aboutMessage,
+        issueList,
     },
     Mutation: {
         setAboutMessage,
@@ -23,6 +40,11 @@ const resolvers = {
 // define the function used in the resolvers above
 function setAboutMessage(_, { message }) {
     return aboutMessage = message;
+}
+
+// Call the issueList function to return the database holding all issues
+function issueList() {
+    return issuesDB;
 }
 
 // initiate an apollo server that takes in the typedefs from schema.graphql and the resolvers above
