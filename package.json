@@ -21,7 +21,8 @@
   "dependencies": {
     "apollo-server-express": "^2.19.0",
     "express": "^4.17.1",
-    "graphql": "^15.4.0"
+    "graphql": "^15.4.0",
+    "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
