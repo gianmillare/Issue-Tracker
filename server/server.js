@@ -47,6 +47,7 @@ const resolvers = {
     Mutation: {
         setAboutMessage,
     },
+    GraphQLDate,
 };
 
 // define the function used in the resolvers above
