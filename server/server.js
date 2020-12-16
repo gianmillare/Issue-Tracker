@@ -7,6 +7,9 @@ const express = require('express');
 // Create an apollo server object
 const { ApolloServer } = require('apollo-server-express');
 
+// create a graphql scalar object
+const { GraphQLScalarType } = require('graphql');
+
 // the variable that we want to display: an about message
 let aboutMessage = "Issue Tracker API v1.0";
 
@@ -25,6 +28,15 @@ const issuesDB = [
         due: undefined, title: "Registration page leads to blank page after registering.",
     },
 ];
+
+// create a function that passes the graphqldate and changes the string dates to actual dates
+const GraphQLDate = new GraphQLScalarType({
+    name: 'GraphQLDate',
+    description: 'A Date() type in GraphQL as a scalar',
+    serialize(value) {
+        return value.toISOString();
+    },
+});
 
 // create functions following the schema that will be used when accessing the schema
 const resolvers = {
