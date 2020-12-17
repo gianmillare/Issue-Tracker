@@ -10,6 +10,9 @@ const { ApolloServer } = require('apollo-server-express');
 // create a graphql scalar object
 const { GraphQLScalarType } = require('graphql');
 
+// create an object for graphql language
+const { Kind } = require('graphql/language');
+
 // the variable that we want to display: an about message
 let aboutMessage = "Issue Tracker API v1.0";
 
@@ -36,6 +39,12 @@ const GraphQLDate = new GraphQLScalarType({
     serialize(value) {
         return value.toISOString();
     },
+    parseValue(value) {
+        return new Date(value);
+    },
+    parseLiteral(ast) {
+        return (ast.kind == Kind.STRING) ? new Date(ast.value) : undefined;
+    },
 });
 
 // create functions following the schema that will be used when accessing the schema
@@ -46,6 +55,7 @@ const resolvers = {
     },
     Mutation: {
         setAboutMessage,
+        issueAdd,
     },
     GraphQLDate,
 };
@@ -58,6 +68,15 @@ function setAboutMessage(_, { message }) {
 // Call the issueList function to return the database holding all issues
 function issueList() {
     return issuesDB;
+}
+
+// issueAdd function to add new issues
+function issueAdd(_, { issue }) {
+    issue.created = new Date();
+    issue.id = issuesDB.length + 1;
+    if (issue.status == undefined) issue.status = 'New';
+    issuesDB.push(issue);
+    return issue;
 }
 
 // initiate an apollo server that takes in the typedefs from schema.graphql and the resolvers above

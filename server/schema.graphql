@@ -29,4 +29,5 @@ type Query {
 
 type Mutation {
     setAboutMessage(message: String!): String
+    issueAdd(issue: IssueInputs!): Issue!
 }
