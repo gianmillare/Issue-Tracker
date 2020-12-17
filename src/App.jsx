@@ -60,6 +60,7 @@ class IssueAdd extends React.Component {
         const form = document.forms.issueAdd;
         const issue = {
             owner: form.owner.value, title: form.title.value, status: "New",
+            due: new Date(new Date().getTime() + 1000*60*60*24*10),
         }
         this.props.createIssue(issue);
         form.owner.value = ""; form.title.value = "";
@@ -106,14 +107,17 @@ class DisplayIssue extends React.Component {
           this.setState({ issues: result.data.issueList });
     }
 
-    createIssue(issue) {
-        issue.id = this.state.issues.length + 1;
-        issue.created = new Date();
-        const newIssueList = this.state.issues.slice();
-        // console.log(newIssueList);
-        newIssueList.push(issue);
-        // console.log(newIssueList);
-        this.setState({ issues: newIssueList });
+    async createIssue(issue) {
+        const query = `mutation {
+            issueAdd(issue: {
+                title: "${issue.title}",
+                owner: "${issue.owner}",
+                due: "${issue.due.toISOString()}",
+            }) {
+                id
+            }
+        }`;
+
     }
 
     render() {
