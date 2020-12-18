@@ -74,6 +74,20 @@ function issueList() {
     return issuesDB;
 }
 
+// input the function that will launch UserInputError from apollo server
+function issueValidate(issue) {
+    const errors = [];
+    if (issue.title.length < 3) {
+        errors.push('Field "title" must be at least 3 characters long.')
+    }
+    if (issue.status == "Assigned" && !issue.owner) {
+        errors.push('Field "owner" is required when issue is Assigned.');
+    }
+    if (errors.length > 0) {
+        throw new UserInputError('Invalid input(s), {errors}');
+    }
+}
+
 // issueAdd function to add new issues
 function issueAdd(_, { issue }) {
     issue.created = new Date();
