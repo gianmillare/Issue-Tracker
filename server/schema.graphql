@@ -1,5 +1,12 @@
 scalar GraphQLDate
 
+enum StatusType {
+    New
+    Assigned
+    Fixed
+    Closed
+}
+
 type Issue {
     id: Int!
     title: String!
