@@ -4,8 +4,8 @@ const fs = require('fs');
 // set express to require express
 const express = require('express');
 
-// Create an apollo server object
-const { ApolloServer } = require('apollo-server-express');
+// Create an apollo server object, include UserInputError into the apollo server as well
+const { ApolloServer, UserInputError } = require('apollo-server-express');
 
 // create a graphql scalar object
 const { GraphQLScalarType } = require('graphql');
@@ -40,10 +40,14 @@ const GraphQLDate = new GraphQLScalarType({
         return value.toISOString();
     },
     parseValue(value) {
-        return new Date(value);
+        const dateValue = new Date(value);
+        return isNaN(dateValue) ? undefined : dateValue;
     },
     parseLiteral(ast) {
-        return (ast.kind == Kind.STRING) ? new Date(ast.value) : undefined;
+        if (ast.kind == Kind.STRING) {
+            const value = new Date(ast.value);
+            return isNaN(value) ? undefined : value;
+        }
     },
 });
 
