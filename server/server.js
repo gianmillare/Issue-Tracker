@@ -23,7 +23,7 @@ const issuesDB = [
         due: new Date("2020-12-10"), title: "Users are unable to add new issues.",
     },
     {
-        id: 2, status: "New", owner: "Christian", effort: 2, created: new Date("2020-12-11"), 
+        id: 2, status: "New", owner: "Garvyn", effort: 2, created: new Date("2020-12-11"), 
         due: new Date("2020-12-20"), title: "Borders around the issue table is missing.",
     },
     {
@@ -115,7 +115,7 @@ app.use(express.static('public'));
 server.applyMiddleware({ app, path: '/graphql' });
 
 app.listen(3000, function() {
-    console.log("App is running on localhost:3000!");
+    console.log("Head to localhost:3000 to witness the app!");
 })
 
 // MongoDB Notes: Maintenance
