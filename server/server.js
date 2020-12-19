@@ -117,3 +117,8 @@ server.applyMiddleware({ app, path: '/graphql' });
 app.listen(3000, function() {
     console.log("App is running on localhost:3000!");
 })
+
+// MongoDB Notes
+// To install: brew install mongodb-community@4.4
+// To update: brew upgrade mongodb/brew/mongodb-community
+// To start: brew services start mongodb-community
