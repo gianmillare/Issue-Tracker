@@ -27,7 +27,7 @@ const issuesDB = [
         due: new Date("2020-12-20"), title: "Borders around the issue table is missing.",
     },
     {
-        id: 3, status: "Completed", owner: "Calvin", effort: 8, created: new Date("2020-12-02"), 
+        id: 3, status: "Assigned", owner: "Calvin", effort: 8, created: new Date("2020-12-02"), 
         due: undefined, title: "Registration page leads to blank page after registering.",
     },
 ];

@@ -79,30 +79,28 @@ class IssueAdd extends React.Component {
 
 async function graphQLFetch(query, variables = {}) {
     try {
-        const response = await fetch('/graphql', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query, variables })
-        });
-        const body = await response.text();
-        const result = JSON.parse(body, jsonDataReviver);
-
-        // if errors exist in the results, display the first error
-        if (result.errors)  {
-            const error = result.errors[0];
-            // if the errors return bas user inputs, return the error and separate them by line
-            if (error.extensions.code == 'BAD_USER_INPUT') {
-                const details = error.extensions.exception.errors.join('\n ');
-                alert(`${error.message}:\n ${details}`);
-            } else {
-                alert(`${error.extensions.code}: ${error.message}`);
-            }
+      const response = await fetch('/graphql', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({ query, variables })
+      });
+      const body = await response.text();
+      const result = JSON.parse(body, jsonDateReviver);
+  
+      if (result.errors) {
+        const error = result.errors[0];
+        if (error.extensions.code == 'BAD_USER_INPUT') {
+          const details = error.extensions.exception.errors.join('\n ');
+          alert(`${error.message}:\n ${details}`);
+        } else {
+          alert(`${error.extensions.code}: ${error.message}`);
         }
-        return result.data;
+      }
+      return result.data;
     } catch (e) {
-        alert(`Error in sending data to server: $(e.message)`);
+      alert(`Error in sending data to server: ${e.message}`);
     }
-}
+  }
 
 class DisplayIssue extends React.Component {
     constructor() {
