@@ -131,3 +131,7 @@ app.listen(3000, function() {
 // To start a collection/documents: db.employees.insertOne({ name: { first: 'John', last: 'Doe' }, age: 30 })
 // To show a collection and data: db.employees.find() -----> db.employees.find().pretty()
 
+// MongoDB Notes: Creating variables and arrays in MongoDB
+// To create an (array) variable: let result = db.employees.find().toArray()
+// To output variables: result.forEach((e) => print('First Name:', e.name.first))
+// To output entire variable objects (parsed): result.forEach((e) => printjson(e.name))
