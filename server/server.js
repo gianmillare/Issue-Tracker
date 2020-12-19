@@ -118,7 +118,7 @@ app.listen(3000, function() {
     console.log("App is running on localhost:3000!");
 })
 
-// MongoDB Notes
+// MongoDB Notes: Maintenance
 // To install: brew install mongodb-community@4.4
 // To update: brew upgrade mongodb/brew/mongodb-community
 // To start connection: brew services start mongodb-community
@@ -126,4 +126,8 @@ app.listen(3000, function() {
 // To display databases: show databases
 // To dispaly collections: show collections
 // To create a database: use issuetracker
-// 
+
+// MongoDB Notes: Command Line actions
+// To start a collection/documents: db.employees.insertOne({ name: { first: 'John', last: 'Doe' }, age: 30 })
+// To show a collection and data: db.employees.find() -----> db.employees.find().pretty()
+
