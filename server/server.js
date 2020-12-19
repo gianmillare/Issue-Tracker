@@ -121,4 +121,9 @@ app.listen(3000, function() {
 // MongoDB Notes
 // To install: brew install mongodb-community@4.4
 // To update: brew upgrade mongodb/brew/mongodb-community
-// To start: brew services start mongodb-community
+// To start connection: brew services start mongodb-community
+// To start mongo: mongo
+// To display databases: show databases
+// To dispaly collections: show collections
+// To create a database: use issuetracker
+// 
