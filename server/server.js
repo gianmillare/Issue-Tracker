@@ -97,6 +97,16 @@ function issueAdd(_, { issue }) {
     return issue;
 }
 
+async function graphQLFetch(query, variables = {}) {
+    try {
+        const response = await fetch('/graphql', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query, variables })
+        });
+    }
+}
+
 // initiate an apollo server that takes in the typedefs from schema.graphql and the resolvers above
 const server = new ApolloServer({
     typeDefs: fs.readFileSync('./server/schema.graphql', 'utf-8'),
