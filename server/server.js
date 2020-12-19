@@ -135,3 +135,15 @@ app.listen(3000, function() {
 // To create an (array) variable: let result = db.employees.find().toArray()
 // To output variables: result.forEach((e) => print('First Name:', e.name.first))
 // To output entire variable objects (parsed): result.forEach((e) => printjson(e.name))
+
+// CRUD: Create Read Update Delete
+
+// Create
+// To delete collections: db.employees.drop()
+// To insert new data with personalized ID --> include "_id: ####" as one of the fields
+// To create many documents: db.employees.insertMany([
+    // { _id: 3, name: {first: 'Harry', last: 'Larry' }, age: 12 },
+    // { _id: 4, name: {first: 'Mary', last: 'Carrie' }, age: 14 }
+// ])
+
+// Read
