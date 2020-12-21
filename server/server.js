@@ -146,5 +146,6 @@ app.listen(3000, function() {
     // { _id: 4, name: {first: 'Mary', last: 'Carrie' }, age: 14 }
 // ])
 
-// Read
+// Read ----> structure -----> fieldname: { operator: value }
 // To read a specific entry: db.employees.findOne({ id: 1 })
+// Filtering: greater than or equal to ----> db.employees.find({ age:$gte: 30 })
