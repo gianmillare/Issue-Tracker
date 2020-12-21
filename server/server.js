@@ -147,3 +147,4 @@ app.listen(3000, function() {
 // ])
 
 // Read
+// To read a specific entry: db.employees.findOne({ id: 1 })
