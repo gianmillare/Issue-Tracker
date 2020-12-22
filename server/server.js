@@ -155,3 +155,5 @@ app.listen(3000, function() {
 // UPDATE
 // There are two main kinds of updates: updateOne() and updateMany()
 // Update One: db.employees.updateOne({ id: 2 }, { $set: { age: 23 }})
+// Update Many: db.employees.updateMany({}, { $set: { organization: "MyCompany" } })
+// Replace: db.employees.replaceOne({ id: 4 }, { id: 4, name: { first: 'Bobby' }, age: 66 });
