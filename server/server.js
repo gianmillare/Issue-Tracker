@@ -157,3 +157,12 @@ app.listen(3000, function() {
 // Update One: db.employees.updateOne({ id: 2 }, { $set: { age: 23 }})
 // Update Many: db.employees.updateMany({}, { $set: { organization: "MyCompany" } })
 // Replace: db.employees.replaceOne({ id: 4 }, { id: 4, name: { first: 'Bobby' }, age: 66 });
+
+// DELETE
+// To delete one entry: db.employees.deleteOne({ id: 4 })
+// Quick display of number of documents: db.employees.count()
+
+// Aggregate --> used to perform formulas on collections
+// Sum fields: db.employees.aggregate([ { $group: { _id: null, total_age: { $sum: '$age' }}} ])
+    // use $group, then the column to groupby, and the calculation you want to perform
+    // You can group by different fields: db.employees.aggregate([ { $group: { _id: '$organization', average: { $avg: '$age' }}} ])
