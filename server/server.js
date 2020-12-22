@@ -138,7 +138,7 @@ app.listen(3000, function() {
 
 // CRUD: Create Read Update Delete
 
-// Create
+// CREATE
 // To delete collections: db.employees.drop()
 // To insert new data with personalized ID --> include "_id: ####" as one of the fields
 // To create many documents: db.employees.insertMany([
@@ -146,7 +146,12 @@ app.listen(3000, function() {
     // { _id: 4, name: {first: 'Mary', last: 'Carrie' }, age: 14 }
 // ])
 
-// Read ----> structure -----> fieldname: { operator: value }
+// READ ----> structure -----> fieldname: { operator: value }
 // To read a specific entry: db.employees.findOne({ id: 1 })
 // Filtering: greater than or equal to ----> db.employees.find({ age: { $gte: 30 } })
 // Filtering: greater than or equal to w/ multiple field ----> db.employees.find({ age: { $gte:30 }, 'name.last': 'Doe' })
+// Creating an index: db.employees.createIndex({ age: 1 })
+
+// UPDATE
+// There are two main kinds of updates: updateOne() and updateMany()
+// Update One: db.employees.updateOne({ id: 2 }, { $set: { age: 23 }})
